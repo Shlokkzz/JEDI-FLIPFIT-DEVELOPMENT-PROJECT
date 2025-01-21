@@ -96,3 +96,4 @@ coverage/
 public/uploads/
 storage/
 tmp/
+/.metadata/

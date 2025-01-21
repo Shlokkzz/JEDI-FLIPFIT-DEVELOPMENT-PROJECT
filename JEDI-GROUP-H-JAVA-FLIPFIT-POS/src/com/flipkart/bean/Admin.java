@@ -6,6 +6,6 @@ package com.flipkart.bean;
 /**
  * 
  */
-public class Admin {
+public class Admin extends User {
 
 }
