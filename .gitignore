@@ -1,0 +1,98 @@
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+bower_components/
+vendor/
+
+# Build directories
+dist/
+build/
+tmp/
+out/
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+
+# System files
+*.swp
+*.swo
+*.bak
+*.tmp
+*.orig
+*.lock
+
+# IDE and editor settings
+.idea/
+.vscode/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+
+# Compiled files
+*.class
+*.o
+*.so
+*.dll
+*.exe
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+
+# Java
+target/
+*.jar
+*.war
+*.ear
+
+# Ruby
+*.gem
+*.rbc
+.sass-cache/
+
+# PHP
+vendor/
+*.phar
+
+# macOS Finder files
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows shortcut files
+*.lnk
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.tgz
+
+# Temporary files and backups
+*.~*
+*.tmp
+*.bak
+
+# Ignore coverage reports
+coverage/
+*.lcov
+
+# Ignore public uploads or generated assets
+public/uploads/
+storage/
+tmp/
