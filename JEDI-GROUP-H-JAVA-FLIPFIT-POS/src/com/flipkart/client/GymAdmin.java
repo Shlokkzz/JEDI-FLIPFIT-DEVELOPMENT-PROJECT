@@ -1,5 +1,5 @@
 package com.flipkart.client;
 
-public class FlipfitGymAdmin {
+public class GymAdmin {
 
 }

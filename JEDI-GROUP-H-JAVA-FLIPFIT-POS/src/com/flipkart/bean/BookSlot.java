@@ -6,11 +6,11 @@ package com.flipkart.bean;
 /**
  * 
  */
-public class Booking {
+public class BookSlot {
 	
 	private String bookingId, paymentId, userId, status;
 	private Slot slot;
-	private Gym flipfitGym;
+	private GymCentre flipfitGym;
 	
 	/**
 	 * @return the bookingId
@@ -75,13 +75,13 @@ public class Booking {
 	/**
 	 * @return the flipfitGym
 	 */
-	public Gym getFlipfitGym() {
+	public GymCentre getFlipfitGym() {
 		return flipfitGym;
 	}
 	/**
 	 * @param flipfitGym the flipfitGym to set
 	 */
-	public void setFlipfitGym(Gym flipfitGym) {
+	public void setFlipfitGym(GymCentre flipfitGym) {
 		this.flipfitGym = flipfitGym;
 	}
 	

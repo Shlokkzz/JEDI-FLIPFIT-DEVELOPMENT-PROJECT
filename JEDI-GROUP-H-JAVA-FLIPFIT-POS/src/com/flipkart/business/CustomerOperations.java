@@ -3,6 +3,7 @@
  */
 package com.flipkart.business;
 
+import com.flipkart.bean.*;
 
 /**
  * 
@@ -20,11 +21,11 @@ public class CustomerOperations {
 		System.out.println("Customer is deleted by id" + id);
 		return true;
 	}
-//	public void listCustomer() {
-//		System.out.println("");
-//	}
+	public void listCustomer() {
+		System.out.println("");
+	}
 	
-	public void requestBooking(Slot slot, Gym gym, String userId) {
+	public void requestBooking(Slot slot, GymCentre gym, String userId) {
 		System.out.println("Customer requests booking\n");
 	}
 	

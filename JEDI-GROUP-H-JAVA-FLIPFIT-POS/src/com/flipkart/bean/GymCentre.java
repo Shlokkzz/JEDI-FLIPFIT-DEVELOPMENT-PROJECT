@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 
  */
-public class Gym {
+public class GymCentre {
 	
 	private String gymId, name, location;
 	private List<Slot> totalSlots;
