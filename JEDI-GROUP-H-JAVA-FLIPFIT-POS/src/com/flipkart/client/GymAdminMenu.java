@@ -5,7 +5,10 @@ import java.util.Scanner;
 import com.flipkart.business.GymAdminOperations;
 
 public class GymAdminMenu {
-	public static void displayGymAdminMenu(Scanner scanner) {
+	
+	static Scanner scanner=new Scanner(System.in);
+	
+	public static void displayGymAdminMenu(String userId) {
         System.out.println("Welcome Gym Admin! Here are your options:");
         System.out.println("1. View And Approve Gym Owners");
         System.out.println("2. View And Approve New Gyms");
@@ -24,9 +27,9 @@ public class GymAdminMenu {
 	        		newChoice = scanner.nextInt();
 	        		switch(newChoice) {
 	        			case 1:
-	        				System.out.println("Enter userId to approve:");
-	        				String userId = scanner.next();
-	        				GymAdminOperations.approveGymOwner(userId);
+	        				System.out.println("Enter gym Owner to approve:");
+	        				String gymOwnerId = scanner.next();
+	        				GymAdminOperations.approveGymOwner(gymOwnerId);
 	        				break;
 	        			case 2:
 	        				System.out.println("Approval round finished.");
@@ -67,6 +70,6 @@ public class GymAdminMenu {
         	default:
         		System.out.println("Invalid choice!");
         }
-        displayGymAdminMenu(scanner);
+        displayGymAdminMenu(userId);
     }
 }

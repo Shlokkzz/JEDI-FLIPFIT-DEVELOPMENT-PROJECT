@@ -5,7 +5,9 @@ import java.util.Scanner;
 import com.flipkart.business.CustomerOperations;
 
 public class CustomerMenu {
-	public static void displayCustomerMenu(Scanner scanner) {
+	static Scanner scanner=new Scanner(System.in);
+	
+	public static void displayCustomerMenu(String userId) {
         System.out.println("Welcome Customer! Here are your options:");
         System.out.println("1. View Active Gym Bookings");
         System.out.println("2. View All Gyms");
@@ -25,7 +27,7 @@ public class CustomerMenu {
         		//idk how to book slot
         		break;
         	case 3:
-        		CustomerOperations.updateCustomer(0); // id
+        		CustomerOperations.updateCustomer(userId); // id
         		System.out.println("Profile can't be updated");
         		//sochte hai
         		break;
@@ -36,6 +38,6 @@ public class CustomerMenu {
         	default:
         		System.out.println("Invalid choice!");
         }
-        displayCustomerMenu(scanner);
+        displayCustomerMenu(userId);
     }
 }
