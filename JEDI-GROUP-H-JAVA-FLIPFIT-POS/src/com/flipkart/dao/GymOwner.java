@@ -1,5 +1,7 @@
 package com.flipkart.dao;
 
+import java.util.List;
+
 import com.flipkart.bean.GymCentre;
 import com.flipkart.bean.Slot;
 
@@ -14,7 +16,7 @@ public interface GymOwner {
 	
 	public   void addSlot(Slot slot, String gymId) ;
 	
-	public   void viewSlots(String gymId) ;
+	public   List<String> viewSlots(String gymId) ;
 	
-	public   void viewMyGyms() ;
+	public   List<String> viewMyGyms(String gymOwnerId) ;
 }

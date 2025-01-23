@@ -24,7 +24,7 @@ public class GymOwnerOperations {
 		System.out.println("No slots to see.");
 	}
 	
-	public static void viewMyGyms() {
+	public static void viewMyGyms(String gymOwnerId) {
 		System.out.println("no gyms owned :(");
 	}
 	
