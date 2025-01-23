@@ -1,39 +1,33 @@
-/**
- * 
- */
 package com.flipkart.business;
 
 import com.flipkart.bean.*;
 
-/**
- * 
- */
 public class CustomerOperations {
-	public void createCustomer(){
+	public static void createCustomer(){
 		System.out.println("This method is used to create a customer");
 	}
 	
-	public boolean updateCustomer(int id){
+	public static boolean updateCustomer(int id){
 		System.out.println("Customer is updated by id" + id);
 		return true;
 	}
-	public boolean deleteCustomer(int id) {
+	public static boolean deleteCustomer(int id) {
 		System.out.println("Customer is deleted by id" + id);
 		return true;
 	}
-	public void listCustomer() {
+	public static void listCustomer() {
 		System.out.println("");
 	}
 	
-	public void requestBooking(Slot slot, GymCentre gym, String userId) {
-		System.out.println("Customer requests booking\n");
+	public static void requestBooking(Slot slot, GymCentre gym, String userId) {
+		System.out.println("Customer requests booking");
 	}
 	
-	public void cancelBooking(String bookingId, String userId) {
-		System.out.println("Customer cancels booking\n");
+	public static void cancelBooking(String bookingId, String userId) {
+		System.out.println("Customer cancels booking");
 	}
 	
-	public void viewBooking(String userId) {
-		System.out.println("Bookings: \n");
+	public static void viewBooking(String userId) {
+		System.out.println("Bookings:");
 	}
 }

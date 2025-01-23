@@ -1,6 +1,7 @@
 package com.flipkart.client;
 
 import java.util.*;
+import com.flipkart.business.*;
 
 public class MainMenu {
 	public static void main(String[] args) {
@@ -43,11 +44,10 @@ public class MainMenu {
                 return;
             default:
                 System.out.println("Invalid choice. Please try again.");
+                mainMenu(scanner);
         }    
-        mainMenu(scanner);
         
 	}
-
 
     private static void login(Scanner scanner) {
         System.out.print("Enter the Username: ");
@@ -79,7 +79,12 @@ public class MainMenu {
         System.out.print("Enter the Password: ");
         String password = scanner.nextLine();
         
-
+        if(role.equals("customer")) {
+        	CustomerOperations.createCustomer();//modify signature to accept username pwd
+        }
+        else {
+        	
+        }
         //create user
         System.out.println("Registration successful");
         mainMenu(scanner);
@@ -99,29 +104,32 @@ public class MainMenu {
     
     private static void displayCustomerMenu(Scanner scanner) {
         System.out.println("Welcome Customer! Here are your options:");
-        System.out.println("1. View Gym Membership");
-        System.out.println("2. Book a Session");
+        System.out.println("1. View Active Gym Bookings");
+        System.out.println("2. View All Gyms");
         System.out.println("3. Update Profile");
         System.out.println("4. Logout");
         
         int choice = scanner.nextInt();
         switch(choice) {
         	case 1:
-        		System.out.println("Your membership DNE");
+        		CustomerOperations.viewBooking("");
+        		System.out.println("Your bookings DNE");
         		//or show if exists
         		break;
         	case 2:
+        		CustomerOperations.requestBooking(null, null, null);//db se data pull karke karenge kuch
         		System.out.println("Your booking can't be done");
         		//idk how to book slot
         		break;
         	case 3:
+        		CustomerOperations.updateCustomer(0); // id
         		System.out.println("Profile can't be updated");
         		//sochte hai
         		break;
         	case 4:
         		System.out.println("Logged Out.");
         		mainMenu(scanner);
-        		break;
+        		return;
         	default:
         		System.out.println("Invalid choice!");
         }
@@ -131,9 +139,8 @@ public class MainMenu {
     private static void displayGymOwnerMenu(Scanner scanner) {
         System.out.println("Welcome Gym Owner! Here are your options:");
         System.out.println("1. Add New Gym");
-        System.out.println("2. Manage Gym Schedule");
-        System.out.println("3. View Customer Feedback");
-        System.out.println("4. Logout");
+        System.out.println("2. Manage Gym Slots");
+        System.out.println("3. Logout");
         int choice = scanner.nextInt();
         switch(choice) {
         	case 1:
@@ -145,10 +152,6 @@ public class MainMenu {
         		//idk how to book slot
         		break;
         	case 3:
-        		System.out.println("Your feedback DNE");
-        		//sochte hai
-        		break;
-        	case 4:
         		System.out.println("Logged Out.");
         		mainMenu(scanner);
         		break;
@@ -160,29 +163,63 @@ public class MainMenu {
 
     private static void displayGymAdminMenu(Scanner scanner) {
         System.out.println("Welcome Gym Admin! Here are your options:");
-        System.out.println("1. Manage Gym Owners");
-        System.out.println("2. Manage Gym Customers");
-        System.out.println("3. View Reports");
+        System.out.println("1. View And Approve Gym Owners");
+        System.out.println("2. View And Approve New Gyms");
+        System.out.println("3. View All Gyms");
         System.out.println("4. Logout");
         
         int choice = scanner.nextInt();
+        int newChoice;
         switch(choice) {
         	case 1:
-        		System.out.println("No gym owners exist.");
-        		//or show if exists
+        		GymAdminOperations.viewPendingGymOwners();
+        		newChoice = 0;
+        		while(newChoice != 2) {
+	        		System.out.println("1. Approve a gym owner");
+	        		System.out.println("2. Finish");
+	        		newChoice = scanner.nextInt();
+	        		switch(newChoice) {
+	        			case 1:
+	        				System.out.println("Enter userId to approve:");
+	        				String userId = scanner.next();
+	        				GymAdminOperations.approveGymOwner(userId);
+	        				break;
+	        			case 2:
+	        				System.out.println("Approval round finished.");
+	        				break;
+	        			default:
+	        				System.out.println("Invalid choice!");
+	        		}
+        		}
         		break;
         	case 2:
-        		System.out.println("No gym customers exist.");
-        		//idk how to book slot
+        		GymAdminOperations.viewPendingGyms();
+        		newChoice = 0;
+        		while(newChoice != 2) {
+	        		System.out.println("1. Approve a gym");
+	        		System.out.println("2. Finish");
+	        		newChoice = scanner.nextInt();
+	        		switch(newChoice) {
+	        			case 1:
+	        				System.out.println("Enter gymId to approve:");
+	        				String gymId = scanner.next();
+	        				GymAdminOperations.approveGym(gymId);
+	        				break;
+	        			case 2:
+	        				System.out.println("Approval round finished.");
+	        				break;
+	        			default:
+	        				System.out.println("Invalid choice!");
+	        		}
+        		}
         		break;
         	case 3:
-        		System.out.println("Your reports DNE");
-        		//sochte hai
+        		GymAdminOperations.viewGyms();
         		break;
         	case 4:
         		System.out.println("Logged Out.");
         		mainMenu(scanner);
-        		break;
+        		return;
         	default:
         		System.out.println("Invalid choice!");
         }

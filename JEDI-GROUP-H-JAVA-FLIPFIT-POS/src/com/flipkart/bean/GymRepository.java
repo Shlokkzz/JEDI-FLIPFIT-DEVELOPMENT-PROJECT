@@ -10,20 +10,20 @@ import java.util.List;
  */
 public class GymRepository {
 	
-	private List<GymCentre> allGyms;
+	private static List<GymCentre> allGyms;
 
 	/**
 	 * @return the allGyms
 	 */
-	public List<GymCentre> getAllGyms() {
+	public static List<GymCentre> getAllGyms() {
 		return allGyms;
 	}
 
 	/**
 	 * @param allGyms the allGyms to set
 	 */
-	public void setAllGyms(List<GymCentre> allGyms) {
-		this.allGyms = allGyms;
+	public static void setAllGyms(List<GymCentre> allGyms) {
+		GymRepository.allGyms = allGyms;
 	}
 	
 
