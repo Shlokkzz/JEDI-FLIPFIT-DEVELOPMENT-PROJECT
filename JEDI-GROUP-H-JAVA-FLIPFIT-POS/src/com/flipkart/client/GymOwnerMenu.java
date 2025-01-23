@@ -5,7 +5,10 @@ import java.util.Scanner;
 import com.flipkart.business.GymOwnerOperations;
 
 public class GymOwnerMenu {
-	public static void displayGymOwnerMenu(Scanner scanner) {
+	
+	static Scanner scanner=new Scanner(System.in);
+	
+	public static void displayGymOwnerMenu(String userId) {
         System.out.println("Welcome Gym Owner! Here are your options:");
         System.out.println("1. View All Gym");
         System.out.println("2. Add New Gym");
@@ -56,7 +59,8 @@ public class GymOwnerMenu {
         	default:
         		System.out.println("Invalid choice!");
         }
-        displayGymOwnerMenu(scanner);
-    }
+        displayGymOwnerMenu(userId);
+	}
+	
 
 }
