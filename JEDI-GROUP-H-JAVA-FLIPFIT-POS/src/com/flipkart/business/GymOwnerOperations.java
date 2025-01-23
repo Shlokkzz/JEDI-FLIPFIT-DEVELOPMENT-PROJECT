@@ -7,20 +7,21 @@ public class GymOwnerOperations {
 		System.out.println(gym.getName() + " added successfully");
 	}
 	
-	public static void modifySlots(Slot slot) {
-		
+	public static void modifySlot(Slot slot, String gymId) {
+		System.out.println("Slot modify successfully!");
 	}
 	
-	public static void deleteSlot(Slot slot) {
-			
+	public static void deleteSlot(Slot slot, String gymId) {
+		System.out.println("Slot deleted successfully!");	
 	}
 	
-	public static void addSlot(Slot slot) {
-		
+	public static void addSlot(Slot slot, String gymId) {
+		System.out.println("Slot added successfully!");
 	}
 	
-	public static void viewSlots(GymCentre gym) {
-		
+	public static void viewSlots(String gymId) {
+		//get gymobject and print slots
+		System.out.println("No slots to see.");
 	}
 	
 	public static void viewMyGyms() {
