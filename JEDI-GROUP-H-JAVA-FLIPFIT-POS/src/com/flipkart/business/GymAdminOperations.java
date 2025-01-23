@@ -1,25 +1,36 @@
 package com.flipkart.business;
 
+import java.util.*;
+
+import com.flipkart.bean.*;
+
 public class GymAdminOperations {
 	
-	public void approveGymOwner(String userId) {
-		System.out.println("approve gym owner registration\n");
+	public static void approveGymOwner(String userId) {
+		System.out.println(userId+" gym owner registration approved.");
 	}
 	
-	public void approveGym(String gymId) {
-		System.out.println("approve gym registration\n");
+	public static void approveGym(String gymId) {
+		System.out.println(gymId + " gym registration approved.");
 	}
 	
-	public void viewGym() {
-		System.out.println("Registered Gyms are: \n");
+	public static void viewGyms() {
+		System.out.println("Registered Gyms are:");
+		List<GymCentre> allGyms = GymRepository.getAllGyms();
+		for(GymCentre gym : allGyms) {
+			//printGym
+		}
 	}
 	
-	public void viewPendingGymOwners() {
-		System.out.println("Pending Gym owners: \n");
+	public static void viewPendingGymOwners() {
+		System.out.println("Pending Gym owners:");
+		System.out.println("No pending gyms owners.");//print all gym owners
+		
 	}
 	
-	public void viewPendingGym() {
-		System.out.println("Pending Gym: \n");
+	public static void viewPendingGyms() {
+		System.out.println("Pending Gyms:");
+		System.out.println("No pending gyms.");//print all gyms
 	}
 	
 }

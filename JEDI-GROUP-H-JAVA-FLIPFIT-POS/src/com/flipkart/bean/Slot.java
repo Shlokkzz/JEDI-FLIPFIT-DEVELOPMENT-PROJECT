@@ -14,7 +14,7 @@ public class Slot {
 	private String slotId;
 	private int seats;
 	private LocalDateTime startTime;
-	
+	private String gymId;
 	/**
 	 * @return the slotId
 	 */
@@ -50,6 +50,12 @@ public class Slot {
 	 */
 	public void setStartTime(LocalDateTime startTime) {
 		this.startTime = startTime;
+	}
+	public String getGymId() {
+		return gymId;
+	}
+	public void setGymId(String gymId) {
+		this.gymId = gymId;
 	}
 	
 
