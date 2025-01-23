@@ -8,7 +8,7 @@ package com.flipkart.bean;
  */
 public class User {
 	
-	private String name, email, userId, password;
+	private String name, email, userId, password, role;
 	
 	// getters and setters
 	
@@ -42,6 +42,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	
