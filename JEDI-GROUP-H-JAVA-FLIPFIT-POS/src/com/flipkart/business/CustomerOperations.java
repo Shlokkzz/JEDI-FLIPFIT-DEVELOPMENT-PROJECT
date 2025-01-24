@@ -1,35 +1,27 @@
 package com.flipkart.business;
 
-import java.util.Scanner;
+import java.util.*;
 
 import com.flipkart.bean.*;
 import com.flipkart.client.CustomerMenu;
 import com.flipkart.client.MainMenu;
 import com.flipkart.dao.CustomerDaoImpl;
 import com.flipkart.dao.UserDaoImpl;
+import com.flipkart.dao.SlotDaoImpl;
+import com.flipkart.dao.BookingDaoImpl;
 
 
 public class CustomerOperations {
 	
 	static Scanner sc=new Scanner(System.in);
 	static UserOperations userService=new UserOperations();
+	static BookingDaoImpl BookingDaoObj=new BookingDaoImpl();
+	static SlotDaoImpl SlotDaoObj=new SlotDaoImpl();
 	
-	public static Boolean createCustomer(){
-		System.out.println("This method is used to create a customer");
-		
-		System.out.println("1. Enter Username");
-		String userName = sc.next();
-        System.out.println("2. Enter Email");
-		String email = sc.next();
-        System.out.println("3. Enter Password");
-        String password  = sc.next();
-        
-        System.out.println("4. Return to Menu");
-        
+	
+	
+	public static void createCustomer(String userName, String email, String password){
         userService.createUser(userName, email, password, "customer");
-        
-        
-		return null;
 	}
 	
 	public static boolean updateCustomer(String userId){
@@ -109,37 +101,32 @@ public class CustomerOperations {
 	//BOOKING METHODS BELOW 
 	
 	    
-	    public static void requestBooking(Slot slot, GymCentre gym, String userId) {
-	        if(CustomerDaoImpl.isSlotAvailable(slot, gym)) {
-	            String bookingId = CustomerDaoImpl.doesUserhavePrevBooking(slot, userId);
-	            if(!bookingId.equals("")) {
-	                cancelBooking(bookingId, userId);
-	            }
-	            CustomerDaoImpl.addBooking(slot, gym, userId);
-	            System.out.println("Booking of " + slot.getStartTime() + " at " + gym.getName() + "done!");
-	        }
-	        else {
-	            System.out.println("The selected gym doesn't have a slot.");
-	        }
-	        
-	    }
-	    
-	    public static void cancelBooking(String bookingId, String userId) {
-	        BookSlot booking = new BookSlot();//get from dao
-	        CustomerDaoImpl.cancelBooking(bookingId, userId);
-	        System.out.println("Booking of " + booking.getSlot().getStartTime() + " at " + booking.getFlipfitGym().getName() + "cancelled.");
+    public static void requestBooking(Slot slot, GymCentre gym, String userId) {
+        String bookingId = BookingDaoObj.doesUserhavePrevBooking(slot, userId);
+        if(!bookingId.equals("")) {
+            cancelBooking(bookingId, userId);
+        }
+        BookingDaoObj.createBooking(slot, gym, userId);
+        System.out.println("Booking of " + slot.getStartTime() + " at " + gym.getName() + "done!");
+        
+    }
+    
+    public static void cancelBooking(String bookingId, String userId) {
+        BookSlot booking = BookingDaoObj.getBookingById(bookingId);
+        BookingDaoObj.cancelBooking(bookingId, userId);
+        System.out.println("Booking of " + booking.getSlot().getStartTime() + " at " + booking.getFlipfitGym().getName() + "cancelled.");
 
-	    }
-	    
-	    public static void viewBooking(String userId) {
-	        System.out.println("Bookings:");
-	        List<BookSlot> bookings = CustomerDaoImpl.viewBookings(); 
-	        for(BookSlot booking : bookings) {
-	            System.out.println("You have a booking in " + booking.getFlipfitGym().getName() + " at time slot " + booking.getSlot().getStartTime());
-	        }
-	        
-	    }
-	
+    }
+    
+    public static void viewBooking(String userId) {
+        System.out.println("Bookings:");
+        List<BookSlot> bookings = BookingDaoObj.getBookingsForCustomer(userId); 
+        for(BookSlot booking : bookings) {
+            System.out.println("You have a booking in " + booking.getFlipfitGym().getName() + " at time slot " + booking.getSlot().getStartTime());
+        }
+        
+    }
+
 
 
 
