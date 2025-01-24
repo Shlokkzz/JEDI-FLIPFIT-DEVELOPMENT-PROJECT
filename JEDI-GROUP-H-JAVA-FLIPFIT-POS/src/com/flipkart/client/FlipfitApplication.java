@@ -10,6 +10,8 @@ import com.flipkart.dao.GymOwnerDAOImpl;
 import com.flipkart.dao.UserDAOImpl;
 import com.flipkart.exception.InvalidLogin;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /**
@@ -104,10 +106,11 @@ public class FlipfitApplication {
         // Validate user credentials and get user details
         User user = userService.login(username, password);
         if (user != null) {
-            System.out.println("Logged in successfully.");
+            System.out.println("User: "+ username +" logged in successfully.");
+            displayCurrentDateTime();
             String id = user.getUserid();
             String roleId = user.getRoleId();
-
+            
             // Navigate to the appropriate menu based on user role
             switch (roleId) {
                 case "A":
@@ -133,4 +136,16 @@ public class FlipfitApplication {
             System.out.println("Invalid username or password.");
         }
     }
+    public static void displayCurrentDateTime() {
+    	LocalDateTime currentDateTime = LocalDateTime.now();  
+
+        // Format the date and time
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+        String formattedDateTime = currentDateTime.format(formatter);  
+
+        // Display the current date and time
+        System.out.println("Current Date and Time: " + formattedDateTime);
+		
+		
+	}
 }
