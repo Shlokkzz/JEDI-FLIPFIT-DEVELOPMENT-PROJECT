@@ -1,6 +1,8 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.*;
+
+import com.flipkart.client.Formatting;
 import com.flipkart.utils.dbutils;
 
 import java.sql.Connection;
@@ -112,9 +114,9 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
-                System.out.println("Slot added successfully.");
+                Formatting.print("Slot added successfully.");
             } else {
-                System.out.println("Failed to add slot.");
+                Formatting.print("Failed to add slot.");
             }
 
         } catch (SQLException e) {
@@ -155,9 +157,9 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
 
             int rowsDeleted = statement.executeUpdate();
             if (rowsDeleted > 0) {
-                System.out.println("Slot deleted successfully.");
+                Formatting.print("Slot deleted successfully.");
             } else {
-                System.out.println("Slot not found or failed to delete.");
+                Formatting.print("Slot not found or failed to delete.");
             }
 
         } catch (SQLException e) {

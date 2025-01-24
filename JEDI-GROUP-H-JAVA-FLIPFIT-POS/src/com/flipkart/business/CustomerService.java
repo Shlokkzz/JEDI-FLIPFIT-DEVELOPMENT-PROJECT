@@ -36,9 +36,9 @@ public class CustomerService implements CustomerServiceInterface{
 		boolean val1 = userDAO.addUser(user);
 		boolean val2 = userDAO.registerCustomer(customer);
 		if(val1 && val2){
-			System.out.println("Customer created");
+			
 		}
-		else System.out.println("Customer creation failed");
+		else System.out.println("Error : Customer creation failed");
 	}
 
 	public void showProfile(Customer customer) {

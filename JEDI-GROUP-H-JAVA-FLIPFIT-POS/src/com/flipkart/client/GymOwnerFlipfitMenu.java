@@ -65,6 +65,7 @@ public class GymOwnerFlipfitMenu {
         int gymOwnerChoice = -1;
 
         while (gymOwnerChoice != 5) { // Updated to 4 for logout
+        	System.out.println();
             System.out.println("Gym Owner Menu:");
             System.out.println("1. View all Gym Centers");
             System.out.println("2. Add New Gym Center");
@@ -89,7 +90,7 @@ public class GymOwnerFlipfitMenu {
                     changePassword(gymOwner);
                     break;
                 case 5:
-                    System.out.println("Logging out.");
+                    Formatting.print("Logging out.");
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");

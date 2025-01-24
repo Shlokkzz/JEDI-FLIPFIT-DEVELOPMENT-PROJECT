@@ -1,6 +1,8 @@
 package com.flipkart.client;
 
 import com.flipkart.bean.Customer;
+
+import com.flipkart.client.Formatting;
 import com.flipkart.bean.GymOwner;
 import com.flipkart.bean.Role;
 import com.flipkart.bean.User;
@@ -39,19 +41,20 @@ public class FlipfitApplication {
         ForgotPasswordMenu forgotPasswordMenu = new ForgotPasswordMenu(scanner);
         GymOwnerFlipfitMenu gymOwnerFlipfitMenu = new GymOwnerFlipfitMenu(scanner);
 
-        System.out.println("Welcome to Flipfit");
+       
 
         int choice = -1;
 
         // Main menu loop
         while (choice != 4) {
-            System.out.println("Welcome to the Flipfit Application:");
+        	System.out.println();
+        	Formatting.print("Welcome to the Flipfit Application !!! ");
             System.out.println("1. Login");
             System.out.println("2. Registration of the GYM Customer");
             System.out.println("3. Registration of the GYM Owner");
 //            System.out.println("4. Change Password");
             System.out.println("4. Exit");
-            System.out.print("Enter your choice: ");
+            System.out.println("Enter your choice: ");
             choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -63,13 +66,13 @@ public class FlipfitApplication {
                 case 2:
                     // Register a new customer
                     customerFlipfitMenu.registerCustomer(scanner);
-                    System.out.println("Customer Registered");
+                    Formatting.print(" Customer Registered ");
                     break;
                 case 3:
                     // Register a new gym owner
                     try {
                         gymOwnerFlipfitMenu.registerGymOwner(scanner);
-                        System.out.println("Gym Owner Registered");
+                        Formatting.print(" Gym Owner Registered ");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -80,10 +83,10 @@ public class FlipfitApplication {
 //                    break;
                 case 4:
                     // Exit the application
-                    System.out.println("Exiting the application.");
+                    Formatting.print("Exiting the application.");
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("Error : Invalid choice. Please try again.");
             }
         }
     }
@@ -100,13 +103,13 @@ public class FlipfitApplication {
         System.out.println("Enter your username: ");
         String username = scanner.nextLine();
         UserService userService = new UserService();
-        System.out.print("Enter password: ");
+        System.out.println("Enter password: ");
         String password = scanner.nextLine();
 
         // Validate user credentials and get user details
         User user = userService.login(username, password);
         if (user != null) {
-            System.out.println("User: "+ username +" logged in successfully.");
+            Formatting.print("User: "+ username +" logged in successfully.");
             displayCurrentDateTime();
             String id = user.getUserid();
             String roleId = user.getRoleId();
@@ -114,23 +117,23 @@ public class FlipfitApplication {
             // Navigate to the appropriate menu based on user role
             switch (roleId) {
                 case "A":
-                    System.out.println("Welcome Admin !!!");
+                    Formatting.print("Welcome Admin !!!");
                     adminFlipfitMenu.showMenu(user);
                     break;
                 case "B":
-                    System.out.println("Welcome GymOwner !!!");
+                    Formatting.print("Welcome GymOwner !!!");
                     GymOwner gymOwner = gymOwnerDAOImpl.getGymOwner(user);
                     GymOwnerFlipfitMenu gymOwnerFlipfitMenu = new GymOwnerFlipfitMenu(scanner);
                     gymOwnerFlipfitMenu.showMenu(gymOwner);
                     break;
                 case "C":
-                    System.out.println("Welcome Customer !!!");
+                    Formatting.print("Welcome "+username+ " !!!");
                     Customer customer = customerDAOImpl.getCustomer(user);
                     CustomerFlipfitMenu customerFlipfitMenu = new CustomerFlipfitMenu(scanner);
                     customerFlipfitMenu.showMenu(customer);
                     break;
                 default:
-                    System.out.println("Invalid role. Please try again.");
+                    System.out.println("Error : Invalid role. Please try again.");
             }
         } else {
             System.out.println("Invalid username or password.");
@@ -144,8 +147,10 @@ public class FlipfitApplication {
         String formattedDateTime = currentDateTime.format(formatter);  
 
         // Display the current date and time
-        System.out.println("Current Date and Time: " + formattedDateTime);
+        Formatting.print("Current Date and Time: " + formattedDateTime);
 		
 		
 	}
+    
+   
 }

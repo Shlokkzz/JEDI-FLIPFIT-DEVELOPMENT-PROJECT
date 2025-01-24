@@ -1,6 +1,8 @@
 package com.flipkart.client;
 
 import com.flipkart.bean.*;
+
+import com.flipkart.client.Formatting;
 import com.flipkart.business.BookingService;
 import com.flipkart.business.CustomerService;
 import com.flipkart.business.GymOwnerService;
@@ -81,7 +83,8 @@ public class CustomerFlipfitMenu {
         // Loop until the customer chooses to exit
         while (userChoice != 7) {
             // Display customer menu options
-            System.out.println("Customer Menu:");
+        	System.out.println();
+        	System.out.println("Customer Menu:");
             System.out.println("1. View Profile");
             System.out.println("2. Edit Profile");
             System.out.println("3. Book Slot");
@@ -89,7 +92,7 @@ public class CustomerFlipfitMenu {
             System.out.println("5. Cancel Booking");
             System.out.println("6. Change Password");
             System.out.println("7. Logout");
-            System.out.print("Enter your choice: ");
+            System.out.println("Enter your choice: ");
             userChoice = scanner.nextInt();
             scanner.nextLine(); // consume the newline
 
@@ -114,10 +117,10 @@ public class CustomerFlipfitMenu {
                     changePassword(customer);
                     break;
                 case 7:
-                    System.out.println("Logging Out!");
+                	Formatting.print("Logging Out!");
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                	Formatting.print("Error : Invalid choice. Please try again.");
             }
         }
     }
@@ -125,6 +128,7 @@ public class CustomerFlipfitMenu {
 
     public void addbookings(Customer customer) {
         List<City> cities = cityDAO.getAllCities();
+        System.out.println("List of cities : ");
         AtomicInteger itr = new AtomicInteger(1);
         cities.forEach(city -> {
             System.out.println(itr.getAndIncrement() + ". " + city.getCityName());
@@ -132,6 +136,7 @@ public class CustomerFlipfitMenu {
         System.out.println("Enter City: ");
         String city=scanner.nextLine();
         int c=1;
+        System.out.println("List of Gym Centres : ");
         List<GymCenter> gymCenters = customerService.getGymCenters(city.toLowerCase());
         for(GymCenter gymCenter :gymCenters){
             System.out.println(c + ". " + gymCenter.getGymName());
@@ -147,24 +152,24 @@ public class CustomerFlipfitMenu {
         if(gymCenter_sel != null){
             List<Slot> slots = gymCenter_sel.getSlots();
             if (slots.isEmpty()) {
-                System.out.println("No slots available for this gym center.");
+            	Formatting.print("No slots available for this gym center.");
             }
             else{
-                System.out.println("Available slots:");
+            	Formatting.print("Available slots:");
                 for (int i = 0; i < slots.size(); i++) {
                     Slot slot = slots.get(i);
                     System.out.printf("%d. Start time: %s, End time: %s, Capacity: %d%n",
                             i + 1, slot.getStarttime(), slot.getEndtime(), slot.getCapacity());
                 }
 
-                System.out.print("Choose a slot (enter the number): ");
+                System.out.println("Choose a slot (enter the number): ");
                 int choice = scanner.nextInt();
                 Slot slot = slots.get(choice-1);
                 if(bookingService.bookSlot(customer.getUserid(), gymCenter_sel, slot)){
-                    System.out.println("Booking successful!");
+                	Formatting.print("Booking successful!");
                 }
                 else {
-                    System.out.println("Booking failed!");
+                	Formatting.print("Booking failed!");
                 }
             }
 
@@ -227,9 +232,9 @@ public class CustomerFlipfitMenu {
         List<Booking> bookings = customerService.viewBookings(userId);
 
         if (bookings.isEmpty()) {
-            System.out.println("No bookings found for user: " + userId);
+        	Formatting.print("No bookings found for user: " + userId);
         } else {
-            System.out.println("Bookings for user: " + userId);
+        	Formatting.print("Bookings for user: " + userId);
             for (Booking booking : bookings) {
                 System.out.println("Booking Gym: " + booking.getGymName());
                 System.out.println("Slot Time: " + booking.getSlot().getStarttime() + " - " + booking.getSlot().getEndtime());
@@ -267,7 +272,7 @@ public class CustomerFlipfitMenu {
             System.out.println("No bookings found!!!");
         }
         else {
-            System.out.println("Bookings:\n");
+        	Formatting.print("Bookings:\n");
             int itr=1;
             for (Booking booking : bookings) {
                 System.out.println(itr + ". " + booking.getGymName() + ": " + booking.getBookingDate() + " Duration: 1hr\n");
@@ -277,9 +282,9 @@ public class CustomerFlipfitMenu {
             int choice = scanner.nextInt();
             Booking booking = bookings.get(choice-1);
             if(bookingService.cancelSlotBooking(userId, booking.getSlotID())){
-                System.out.println("Slot Cancelled");
+            	Formatting.print("Slot Cancelled");
             } else {
-                System.out.println("Cancellation unsuccessful!!");
+            	Formatting.print("Cancellation unsuccessful!!");
             }
         }
     }
@@ -323,10 +328,10 @@ public class CustomerFlipfitMenu {
             }
 //            Make an update function in DAO for customer table entry
             if(customerService.editProfile(customer)){
-                System.out.println("Customer profile updated.");
+            	Formatting.print("Customer profile updated.");
             }
         } else {
-            System.out.println("Customer not found.");
+        	Formatting.print("Customer not found.");
         }
     }
 

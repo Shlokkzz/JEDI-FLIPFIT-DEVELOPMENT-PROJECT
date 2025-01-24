@@ -119,11 +119,13 @@ public class GymOwnerService implements GymOwnerServiceInterface {
      */
     public void showGymCenters(User user) {
 //        GymOwner gymOwner = GymOwnerMap.get(user.getUserid());
+    	System.out.println("List of owned gyms : ");
         GymOwnerDAOImpl gymOwnerDAO = new GymOwnerDAOImpl();
         List<GymCenter> gymCenters = gymOwnerDAO.getGymCenters(user.getUserid());
 //        print all gym centers
         for (GymCenter gymCenter : gymCenters) {
             System.out.println("Gym Name: " + gymCenter.getGymName());
+            
         }
     }
 
