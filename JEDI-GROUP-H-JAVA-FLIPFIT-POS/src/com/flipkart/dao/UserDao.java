@@ -1,21 +1,12 @@
 package com.flipkart.dao;
 
+import com.flipkart.bean.Customer;
+import com.flipkart.bean.GymOwner;
+import com.flipkart.bean.User;
 
-
-public interface UserDao {
-	
-
-
-
-public String verifyUser(String username ,String password ,String role );
-
-
-
-public Boolean updateUser(String userId , int choice ,String updateValue);
-
-public Boolean deleteUser(String userId);
-
-public Boolean createUser(String username ,String email,String password ,String role);
-
-
+public interface UserDAO {
+    public User validateUser(String username, String password);
+    public boolean registerGymOwner(GymOwner gymOwner);
+    public boolean registerCustomer(Customer customer);
+    public boolean updateUser(User user);
 }

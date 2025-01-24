@@ -1,16 +1,27 @@
 package com.flipkart.dao;
 
-public interface AdminDao {
+import java.util.List;
 
-	public void approveGym(String gymId);
-	
-	public void  approveGymOwner(String userId);
+import com.flipkart.bean.GymCenter;
+import com.flipkart.bean.GymOwner;
+import com.flipkart.bean.User;
 
-	public void  viewGyms();
-	
+public interface AdminDAO {
+    public List<GymOwner> getAllGymOwners();
 
-	public void  viewPendingGymOwners();
+    public List<GymCenter> getAllGymCenters();
 
-	public void  viewPendingGyms();
+    public List<GymOwner> getPendingGymOwners();
 
+    public List<GymCenter> getPendingGymRequests();
+
+    public boolean approveGymCenter(String gymId);
+
+    public boolean approveAllGymCenter();
+
+    public boolean approveGymOwner(String userID);
+
+    public boolean approveAllGymOwner();
+
+    public List<User> getAllUser();
 }

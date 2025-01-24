@@ -1,21 +1,16 @@
 package com.flipkart.dao;
 
-import com.flipkart.bean.GymCentre;
-import com.flipkart.bean.Slot;
+import com.flipkart.bean.Booking;
+import com.flipkart.bean.Customer;
 
-public interface CustomerDao {
+import java.util.List;
 
-	public   void createCustomer();
-	
-	public   boolean updateCustomer(int id);
-	
-	public   boolean deleteCustomer(int id);
-	
-	public   void listCustomer();
-	
-	public   void requestBooking(Slot slot, GymCentre gym, String userId);
-	
-	public   void cancelBooking(String bookingId, String userId);
-	
-	public   void viewBooking(String userId);
+public interface CustomerDAO {
+
+//    public void fetchBookedSlots(String customerId);
+//    public void cancelBooking(String GymId ,String slotId, String userId, String date);
+//    public void addBooking(Booking booking);
+    public boolean updateProfile(Customer customer);
+    public boolean addBooking(Booking booking);
+    public List<Booking> viewBookings(String userId);
 }
