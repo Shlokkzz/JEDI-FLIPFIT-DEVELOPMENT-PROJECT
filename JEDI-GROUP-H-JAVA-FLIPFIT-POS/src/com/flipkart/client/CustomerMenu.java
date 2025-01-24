@@ -22,7 +22,13 @@ public class CustomerMenu {
         		//or show if exists
         		break;
         	case 2:
-        		//get gyms from Gym table 
+        		viewAllGyms();
+        		System.out.println("Please select gymId:");
+        		String gymId = scanner.next();
+        		viewGymSlots(gymId);
+        		System.out.println("Please select slotId:");
+        		String slotId = scanner.next();
+        		
         		
         		CustomerOperations.requestBooking(null, null, null);//db se data pull karke karenge kuch
         		System.out.println("Your booking can't be done");

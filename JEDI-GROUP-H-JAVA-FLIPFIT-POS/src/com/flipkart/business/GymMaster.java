@@ -4,7 +4,7 @@ public class GymMaster {
 	
 	GymDaoImpl GymDaoObj=new GymDaoImpl();
 	
-	List<Gym> getAllGyms()
+	List<GymCentre> getAllGyms()
 	{
 		return GymDaoObj.getAllGyms();
 		
