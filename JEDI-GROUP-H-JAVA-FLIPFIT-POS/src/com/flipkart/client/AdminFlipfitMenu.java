@@ -42,7 +42,7 @@ public class AdminFlipfitMenu {
         int adminChoice = -1;
 
         // Loop until the admin chooses to log out
-        while (adminChoice != 7) {
+        while (adminChoice != 9) {
             // Display admin menu options
             System.out.println("Admin Menu:");
             System.out.println("1. List pending Gym Owners");

@@ -72,11 +72,12 @@ public class AdminService implements AdminServiceInterface {
     @Override
     public Object listPendingGymCenters() {  // view
         List<GymCenter> pendingGC = adminDAO.getPendingGymCenters();
-        System.out.println("Listing all pending gym owners");
+        System.out.println("------------------------------------------------------------------");
+        System.out.println("Listing all pending gym centers");
         for (GymCenter gymCenter : pendingGC) {
             System.out.println("Gym ID: " + gymCenter.getGymID()+" Gym Name: "+ gymCenter.getGymName());
         }
-
+        System.out.println("------------------------------------------------------------------");
         return pendingGC;
     }
 
@@ -84,42 +85,49 @@ public class AdminService implements AdminServiceInterface {
     @Override
     public Object listPendingGymOwners() {
         List<GymOwner> pendingGO = adminDAO.getPendingGymOwners();
+        System.out.println("------------------------------------------------------------------");
         System.out.println("Listing all pending gym owners");
         for (GymOwner gymOwner : pendingGO) {
             System.out.println("Owner ID: " + gymOwner.getUserid()+" Owner Name: "+gymOwner.getName());
         }
-
+        System.out.println("------------------------------------------------------------------");
         return pendingGO;
     }
 
     @Override
     public Object listGymCenters() {    // view
         List<GymCenter> gymCenters = adminDAO.getAllGymCenters();
+        System.out.println("------------------------------------------------------------------");
         System.out.println("Listing all gym centers");
         for (GymCenter gymCenter : gymCenters) {
             System.out.println("Gym ID: " + gymCenter.getGymID()+" Gym Name: "+ gymCenter.getGymName());
         }
+        System.out.println("------------------------------------------------------------------");
         return gymCenters;
     }
 
     @Override
     public Object listGymOwners() {
+        System.out.println("------------------------------------------------------------------");
         System.out.println("Listing all gym owners");
         List<GymOwner> gymOwners = adminDAO.getAllGymOwners();
         for (GymOwner gymOwner : gymOwners) {
             System.out.println("Owner ID: " + gymOwner.getUserid()+" Owner Name: "+gymOwner.getName());
         }
+        System.out.println("------------------------------------------------------------------");
         return gymOwners;
     }
 
     @Override
     public Object listUsers() {
+        System.out.println("------------------------------------------------------------------");
         System.out.println("Listing all users");
          List<User> allUsers = adminDAO.getAllUser();
          System.out.println(allUsers.size());
          for (User user : allUsers) {
              System.out.println("User ID: " + user.getUserid()+" User Name: "+ user.getUsername());
          }
+         System.out.println("------------------------------------------------------------------");
         return allUsers;
     }
 }
